@@ -1,0 +1,29 @@
+{
+    "project_info": {
+        "project_number": "177727612218",
+        "project_id": "akiri-app-ef455",
+        "storage_bucket": "akiri-app-ef455.firebasestorage.app"
+    },
+    "client": [
+        {
+            "client_info": {
+                "mobilesdk_app_id": "1:177727612218:android:4585f1ec44737135541c03",
+                "android_client_info": {
+                    "package_name": "com.example.akiriapp"
+                }
+            },
+            "oauth_client": [],
+            "api_key": [
+                {
+                    "current_key": "AIzaSyCuDXm5GocnPsjWVUxP00HpQoXQmD09SSA"
+                }
+            ],
+            "services": {
+                "appinvite_service": {
+                    "other_platform_oauth_client": []
+                }
+            }
+        }
+    ],
+    "configuration_version": "1"
+}

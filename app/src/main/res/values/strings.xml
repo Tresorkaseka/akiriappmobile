@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Akiri</string>
+    <string name="onboarding_title">Bienvenue sur Akiri</string>
+    <string name="onboarding_description">La plateforme de formation communautaire pour l\'Afrique. Apprenez, partagez et grandissez ensemble.</string>
+    <string name="onboarding_button_text">Commencer</string>
+    <string name="onboarding_hero_content_description">Illustration d\'apprentissage</string>
+</resources>
