@@ -18,6 +18,7 @@
 - **Course Player**: Functional playback UI and navigation.
 - **Settings**: Profile management, logout, and seed data utility.
 - **Localization**: French strings and FC currency configured.
+- **Build System**: Fixed and verified Gradle wrapper 8.6 with JDK 17.
 
 ## What's Left
 - **Polish**: Micro-animations and final UI touches.
@@ -25,5 +26,5 @@
 
 ## Current Status
 - Phase 1 (UI/UX) - **100% Complete**.
-- Phase 2 (Config/Build) - **100% Complete**.
+- Phase 2 (Config/Build) - **100% Complete** (Build environment restored).
 - Phase 3 (Logic/Backend) - **100% Complete**.

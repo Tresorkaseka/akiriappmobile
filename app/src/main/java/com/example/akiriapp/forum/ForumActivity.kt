@@ -43,14 +43,15 @@ class ForumActivity : AppCompatActivity() {
     }
 
     private fun setupTopicChips() {
-        binding.chipGroupTopics.setOnCheckedStateChangeListener { _, _ ->
+        binding.chipGroupTopics.setOnCheckedStateChangeListener { _, checkedIds ->
             // Get selected chip text and reload posts
-            val selectedChip = binding.chipGroupTopics.checkedChipId
-            selectedTopic = when (selectedChip) {
+            val checkedId = checkedIds.firstOrNull() ?: binding.chipAll.id
+            selectedTopic = when (checkedId) {
                 binding.chipAll.id -> "Tous"
-                binding.chipProgrammation.id -> "Programmation"
+                binding.chipProg.id -> "Programmation"
                 binding.chipDesign.id -> "Design"
-                binding.chipMarketing.id -> "Marketing"
+                binding.chipEnt.id -> "Entrepreneuriat"
+                binding.chipNews.id -> "Actualités"
                 else -> "Tous"
             }
             loadPosts()
