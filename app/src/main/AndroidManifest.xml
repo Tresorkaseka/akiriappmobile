@@ -17,8 +17,17 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
+        <activity android:name=".HomeActivity" />
         <activity android:name=".auth.LoginActivity" />
         <activity android:name=".auth.SignUpActivity" />
+        <activity android:name=".auth.RoleSelectionActivity" />
+        <activity android:name=".forum.ForumActivity" />
+        <activity android:name=".course.CourseDetailsActivity" />
+        <activity android:name=".learning.MyLearningActivity" />
+        <activity
+            android:name=".settings.SettingsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Akiriapp" />
     </application>
 
 </manifest>

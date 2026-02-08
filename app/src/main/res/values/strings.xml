@@ -4,4 +4,89 @@
     <string name="onboarding_description">La plateforme de formation communautaire pour l\'Afrique. Apprenez, partagez et grandissez ensemble.</string>
     <string name="onboarding_button_text">Commencer</string>
     <string name="onboarding_hero_content_description">Illustration d\'apprentissage</string>
+    <string name="welcome_message">Bienvenue !</string>
+
+    <!-- Role Selection -->
+    <string name="choose_role_title">Choisissez votre rôle</string>
+    <string name="role_student_title">Apprenant</string>
+    <string name="role_student_desc">Je veux apprendre de nouvelles compétences</string>
+    <string name="role_trainer_title">Formateur</string>
+    <string name="role_trainer_desc">Je veux partager mon expertise</string>
+
+    <!-- Authentication -->
+    <string name="login_title">Se connecter</string>
+    <string name="signup_title">S\'inscrire</string>
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Mot de passe</string>
+    <string name="forgot_password">Mot de passe oublié ?</string>
+    <string name="no_account">Pas encore de compte ? S\'inscrire</string>
+    <string name="already_account">Déjà un compte ? Se connecter</string>
+
+    <!-- Home Page -->
+    <string name="search_hint">Rechercher des cours...</string>
+    <string name="categories_title">Catégories</string>
+    <string name="popular_courses">Cours Populaires</string>
+    <string name="recommended_courses">Recommandé pour vous</string>
+    <string name="enroll_now">S\'inscrire maintenant</string>
+    
+    <!-- Navigation -->
+    <string name="nav_home">Accueil</string>
+    <string name="nav_courses">Cours</string>
+    <string name="nav_forum">Forum</string>
+    <string name="nav_my_learning">Mes Apprentissages</string>
+    <string name="nav_settings">Paramètres</string>
+
+    <!-- Forum -->
+    <string name="forum_title">Forum Communautaire</string>
+    <string name="topic_all">Tous</string>
+    <string name="topic_prog">Programmation</string>
+    <string name="topic_design">Design</string>
+    <string name="topic_ent">Entreprenariat</string>
+    <string name="topic_news">Actualités</string>
+    <string name="post_time_ago">Il y a %s</string>
+    <string name="post_comment_count">%d commentaires</string>
+    <string name="post_like_count">%d</string>
+
+    <!-- Currency -->
+    <string name="currency_fc">%s FC</string>
+
+    <!-- Auth Messages -->
+    <string name="auth_error_empty_fields">Veuillez remplir tous les champs</string>
+    <string name="auth_error_password_short">Le mot de passe doit contenir au moins 6 caractères</string>
+    <string name="auth_success_signup">Compte créé avec succès!</string>
+
+    <!-- Course Details -->
+    <string name="course_enroll">S\'inscrire</string>
+    <string name="course_enroll_price">S\'inscrire - %s FC</string>
+    <string name="course_free_preview">Aperçu Gratuit</string>
+    <string name="tab_about">À propos</string>
+    <string name="tab_program">Programme</string>
+    <string name="tab_reviews">Avis</string>
+    <string name="course_what_you_learn">Ce que vous apprendrez</string>
+    <string name="course_prerequisites">Prérequis</string>
+    <string name="course_instructor">Formateur</string>
+
+    <!-- My Learning -->
+    <string name="my_learning_title">Mes Apprentissages</string>
+    <string name="my_learning_stats">%d cours en cours • %d terminés</string>
+    <string name="filter_all">Tous</string>
+    <string name="filter_in_progress">En cours</string>
+    <string name="filter_completed">Terminés</string>
+    <string name="progress_completed">%d%% complété</string>
+    <string name="btn_continue">Continuer</string>
+    <string name="section_continue_where_left">Continuer où vous étiez</string>
+    <string name="section_completed">Terminés</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Paramètres</string>
+    <string name="settings_profile">Mon Profil</string>
+    <string name="settings_edit_profile">Modifier le profil</string>
+    <string name="settings_general">Général</string>
+    <string name="settings_notifications">Notifications</string>
+    <string name="settings_language">Langue</string>
+    <string name="settings_dark_mode">Mode Sombre</string>
+    <string name="settings_debug">Debug</string>
+    <string name="settings_seed_data">Générer des données (Seed)</string>
+    <string name="settings_logout">Se déconnecter</string>
+    <string name="settings_version">Version 1.0.0</string>
 </resources>

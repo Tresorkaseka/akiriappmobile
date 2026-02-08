@@ -1,15 +1,16 @@
 # Active Context - akiriapp
 
 ## Current Work Focus
-- Enabling Firebase Auth types (Console).
-- Phase 2 Implementation: Wiring up Login/SignUp logic.
+- Polishing UI and adding micro-animations.
+- Preparing for beta release.
 
 ## Recent Changes
-- Configured Firebase Project `akiri-app-ef455`.
-- Added `google-services.json` and Firebase SDKs.
-- Completed Phase 1 UI.
+- **Backend Complete**: Implemented full Firebase integration with `User`, `Course`, `Enrollment`, `Lesson`, `ForumPost` models and repositories.
+- **My Learning Page**: Created `MyLearningActivity` with progress tracking and filter chips (All/In Progress/Completed).
+- **Settings Page**: Implemented `SettingsActivity` with profile view, logout, notification toggle, and debug "Seed Data" option.
+- **Data Seeder**: Added utility to populate Firestore with sample courses and forum posts.
+- **Navigation**: Updated `HomeActivity` to route to all new sections.
 
 ## Next Steps
-- Implement `FirebaseAuth` logic in `LoginActivity` and `SignUpActivity`.
-- Verify user registration flow.
-- [Fixed] Resolved invalid escape sequence in `strings.xml`.
+- Add micro-animations for smoother UX.
+- Conduct final testing of all flows.

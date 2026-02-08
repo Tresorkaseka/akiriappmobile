@@ -1,8 +1,9 @@
 # Tech Context - akiriapp
 
 ## Technology Stack
+- **Repository:** [GitHub](https://github.com/Tresorkaseka/akiriappmobile.git)
 - **Language:** Kotlin
-- **Build System:** Gradle Kotlin DSL
+- **Build System:** Gradle Kotlin DSL (Version 8.6)
 - **Android SDK:** 
   - compileSdk: 34
   - minSdk: 24
@@ -18,7 +19,10 @@
 - **Google Fonts**: Plus Jakarta Sans (via downloadable fonts or asset).
 
 ## Design System
-- **Theme**: Material 3.
-- **Primary Color**: `#3211d4`.
-- **Typography**: Plus Jakarta Sans.
-- **Shape**: Rounded corners (12dp+).
+- **Theme**: Material 3 / Custom Premium Dark.
+- **Colors**:
+  - Primary (Turquoise): `#0df2df`
+  - Background (Pure Black): `#000000`
+  - Surface: `#121212` (with glass effects)
+- **Typography**: Sans-serif-medium (Lexend style).
+- **Shape**: Rounded corners (Small: 8dp, Medium: 12dp, Large: 16dp).

@@ -1,5 +1,7 @@
 {
   "projects": {
     "default": "akiri-app-ef455"
-  }
+  },
+  "targets": {},
+  "etags": {}
 }
