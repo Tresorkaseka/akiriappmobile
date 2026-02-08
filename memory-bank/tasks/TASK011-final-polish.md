@@ -1,6 +1,6 @@
 # [TASK011] - Final Polish & Animations
 
-**Status:** In Progress
+**Status:** Completed
 **Added:** 2026-02-08
 **Updated:** 2026-02-08
 
@@ -29,11 +29,20 @@ The app has all functional features, but might feel static. I need to add:
 
 ## Progress Tracking
 
-**Overall Status:** In Progress
+**Overall Status:** Completed
 
 ### Subtasks
 | ID | Description | Status | Updated | Notes |
 |----|-------------|--------|---------|-------|
-| 11.1 | Activity Transitions | Not Started | - | - |
-| 11.2 | List Animations | Not Started | - | - |
-| 11.3 | Micro-interactions | Not Started | - | - |
+| 11.1 | Activity Transitions | Completed | 2026-02-08 | Slide animations added |
+| 11.2 | List Animations | Completed | 2026-02-08 | Fall-down effect added |
+| 11.3 | Micro-interactions | Completed | 2026-02-08 | Ripple & Bounce added |
+
+## Progress Log
+### 2026-02-08
+- Created XML animation resources (`res/anim/`).
+- Updated `themes.xml` to use `AppTheme.WindowAnimation`.
+- Added `layoutAnimation` to Forum and Home RecyclerViews.
+- Added Ripple effect to `item_course_card.xml` and `item_forum_post.xml`.
+- Added bounce animation to Forum Like button.
+- Verified build success with `assembleDebug`.

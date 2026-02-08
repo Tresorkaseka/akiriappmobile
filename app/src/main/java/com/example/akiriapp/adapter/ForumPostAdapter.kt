@@ -55,7 +55,12 @@ class ForumPostAdapter(
             val isLiked = post.likedBy.contains(currentUserId)
             binding.btnLike.alpha = if (isLiked) 1f else 0.6f
             
-            binding.btnLike.setOnClickListener { onLikeClick(post) }
+            binding.btnLike.setOnClickListener { 
+                it.animate().scaleX(1.2f).scaleY(1.2f).setDuration(100).withEndAction {
+                    it.animate().scaleX(1f).scaleY(1f).setDuration(100).start()
+                }.start()
+                onLikeClick(post) 
+            }
             binding.btnComment.setOnClickListener { onCommentClick(post) }
             binding.btnShare.setOnClickListener { onShareClick(post) }
         }

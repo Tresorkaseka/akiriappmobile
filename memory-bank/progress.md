@@ -19,9 +19,10 @@
 - **Settings**: Profile management, logout, and seed data utility.
 - **Localization**: French strings and FC currency configured.
 - **Build System**: Fixed and verified Gradle wrapper 8.6 with JDK 17.
+- **UI Experience**: Premium feel with transitions and micro-animations.
 
 ## What's Left
-- **Polish**: Micro-animations and final UI touches.
+- **Release**: Generate signed APK/Bundle.
 - **Tests**: Comprehensive unit and UI tests.
 
 ## Current Status
