@@ -2,6 +2,7 @@ package com.example.akiriapp.settings
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -9,6 +10,7 @@ import com.example.akiriapp.auth.LoginActivity
 import com.example.akiriapp.data.DataSeeder
 import com.example.akiriapp.data.repository.AuthRepository
 import com.example.akiriapp.databinding.ActivitySettingsBinding
+import com.example.akiriapp.trainer.TrainerDashboardActivity
 import kotlinx.coroutines.launch
 
 class SettingsActivity : AppCompatActivity() {
@@ -25,6 +27,7 @@ class SettingsActivity : AppCompatActivity() {
         setupLogout()
         setupSeedData()
         loadUserProfile()
+        setupTrainerDashboard()
     }
 
     private fun setupToolbar() {
@@ -48,6 +51,11 @@ class SettingsActivity : AppCompatActivity() {
                     .uppercase()
                 
                 binding.tvInitials.text = initials.ifEmpty { "?" }
+                
+                // Show trainer dashboard button if user is trainer
+                if (user.role == "trainer") {
+                    binding.btnTrainerDashboard.visibility = View.VISIBLE
+                }
             }.onFailure {
                 // Handle error or show placeholder
             }
@@ -85,6 +93,12 @@ class SettingsActivity : AppCompatActivity() {
                 binding.btnSeedData.isEnabled = false
                 binding.btnSeedData.text = "Données générées"
             }
+        }
+    }
+
+    private fun setupTrainerDashboard() {
+        binding.btnTrainerDashboard.setOnClickListener {
+            startActivity(Intent(this, TrainerDashboardActivity::class.java))
         }
     }
 }

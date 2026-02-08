@@ -14,6 +14,8 @@
 - **Forum/Community**: Full Firebase integration with like/share/create post.
 - **Course Details**: Firebase integration with enrollment functionality.
 - **My Learning**: Firebase integration with progress tracking and filters.
+- **Trainer Dashboard**: Full course creation and stats visualization logic.
+- **Course Player**: Functional playback UI and navigation.
 - **Settings**: Profile management, logout, and seed data utility.
 - **Localization**: French strings and FC currency configured.
 

@@ -118,7 +118,7 @@ class MyLearningActivity : AppCompatActivity() {
     }
 
     private fun navigateToCourse(courseId: String) {
-        val intent = Intent(this, CourseDetailsActivity::class.java)
+        val intent = Intent(this, com.example.akiriapp.learning.CoursePlayerActivity::class.java)
         intent.putExtra("COURSE_ID", courseId)
         startActivity(intent)
     }

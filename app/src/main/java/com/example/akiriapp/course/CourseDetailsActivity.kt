@@ -61,8 +61,9 @@ class CourseDetailsActivity : AppCompatActivity() {
 
         binding.btnEnroll.setOnClickListener {
             if (isEnrolled) {
-                // Navigate to continue course
-                Toast.makeText(this, "Continuer le cours...", Toast.LENGTH_SHORT).show()
+                // Navigate to continue course (Player)
+                val intent = android.content.Intent(this, com.example.akiriapp.learning.CoursePlayerActivity::class.java)
+                startActivity(intent)
             } else {
                 enrollInCourse()
             }
@@ -123,6 +124,10 @@ class CourseDetailsActivity : AppCompatActivity() {
                     Toast.makeText(this@CourseDetailsActivity, "Inscription réussie!", Toast.LENGTH_SHORT).show()
                     isEnrolled = true
                     binding.btnEnroll.text = getString(R.string.btn_continue)
+                    
+                    // Launch player immediately
+                    val intent = android.content.Intent(this@CourseDetailsActivity, com.example.akiriapp.learning.CoursePlayerActivity::class.java)
+                    startActivity(intent)
                 }.onFailure { e ->
                     Toast.makeText(this@CourseDetailsActivity, "Erreur: ${e.message}", Toast.LENGTH_SHORT).show()
                 }

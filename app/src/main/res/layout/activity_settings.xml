@@ -235,6 +235,21 @@
                 app:strokeColor="@color/primary"
                 app:cornerRadius="12dp" />
 
+            <!-- Trainer Dashboard Button (Visible only for trainers) -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnTrainerDashboard"
+                style="@style/Widget.Material3.Button"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="16dp"
+                android:text="Tableau de bord Formateur"
+                android:textColor="@color/background"
+                android:visibility="gone"
+                app:backgroundTint="@color/primary"
+                app:cornerRadius="12dp"
+                app:icon="@drawable/ic_trainer"
+                app:iconTint="@color/background" />
+
             <!-- Logout -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnLogout"
