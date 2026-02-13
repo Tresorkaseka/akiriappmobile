@@ -4,14 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="12dp"
-    app:cardBackgroundColor="@color/surface"
-    app:cardCornerRadius="16dp"
-    app:cardElevation="0dp"
-    app:strokeColor="@color/outline"
-    app:strokeWidth="1dp"
     android:clickable="true"
     android:focusable="true"
-    android:foreground="?attr/selectableItemBackground">
+    android:foreground="?attr/selectableItemBackground"
+    app:cardBackgroundColor="@color/card_background"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="2dp"
+    app:strokeColor="@color/card_stroke"
+    app:strokeWidth="0.5dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -32,12 +32,13 @@
                 app:cardBackgroundColor="@color/primary"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="0dp">
+
                 <ImageView
                     android:id="@+id/ivAvatar"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:src="@drawable/ic_trainer"
                     android:scaleType="centerInside"
+                    android:src="@drawable/ic_trainer"
                     app:tint="@color/on_primary" />
             </com.google.android.material.card.MaterialCardView>
 
@@ -53,7 +54,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Utilisateur"
-                    android:textColor="@color/on_surface"
+                    android:textColor="@color/text_primary"
                     android:textSize="14sp"
                     android:textStyle="bold" />
 
@@ -62,7 +63,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Il y a 2h"
-                    android:textColor="@color/outline"
+                    android:textColor="@color/text_hint"
                     android:textSize="12sp" />
             </LinearLayout>
         </LinearLayout>
@@ -74,7 +75,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:text="Comment débuter en Kotlin ?"
-            android:textColor="@color/on_surface"
+            android:textColor="@color/text_primary"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -84,11 +85,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="Voici quelques ressources pour débuter..."
-            android:textColor="@color/on_surface"
-            android:maxLines="3"
             android:ellipsize="end"
-            android:textSize="14sp" />
+            android:maxLines="3"
+            android:text="Voici quelques ressources pour débuter..."
+            android:textColor="@color/text_secondary"
+            android:textSize="14sp"
+            android:lineSpacingExtra="2dp" />
 
         <!-- Tags -->
         <LinearLayout
@@ -124,13 +126,14 @@
                 android:layout_height="24dp"
                 android:src="@drawable/ic_like"
                 app:tint="@color/primary" />
+
             <TextView
                 android:id="@+id/tvLikeCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="6dp"
                 android:text="24"
-                android:textColor="@color/on_surface"
+                android:textColor="@color/text_primary"
                 android:textSize="14sp" />
 
             <Space
@@ -142,14 +145,15 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/ic_comment"
-                app:tint="@color/outline" />
+                app:tint="@color/text_secondary" />
+
             <TextView
                 android:id="@+id/tvCommentCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="6dp"
                 android:text="8"
-                android:textColor="@color/on_surface"
+                android:textColor="@color/text_primary"
                 android:textSize="14sp" />
 
             <Space
@@ -162,10 +166,8 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:src="@drawable/ic_share"
-                app:tint="@color/outline" />
+                app:tint="@color/text_secondary" />
         </LinearLayout>
-
-
 
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

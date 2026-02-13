@@ -1,17 +1,17 @@
 # Active Context - akiriapp
 
 ## Current Work Focus
-- Preparing for release/handoff.
-- Monitoring user feedback (simulated).
+- Finalizing UI consistency and testing generated assets.
+- Conducting User Acceptance Testing (UAT) on the new Light Theme redesign.
 
 ## Recent Changes
-- **Trainer Features**: Implemented `TrainerDashboardActivity` and `CreateCourseActivity`. Trainers can now effectively create courses and view their stats.
-- **Course Player**: Added `CoursePlayerActivity` for content consumption, connected to the enrollment flow.
-- **Polished UI**: Added global slide transitions, list cascade animations, and micro-interactions (ripple, bounce).
-- **Build Environment Fixed**: Restored valid `gradle-wrapper.jar` (v8.6), fixed XML resource errors (`error` color, `tools` namespace), and resolved Kotlin compilation issues in `ForumActivity`.
-- **Backend Complete**: Implemented full Firebase integration with `User`, `Course`, `Enrollment`, `Lesson`, `ForumPost` models and repositories.
-- **My Learning Page**: Created `MyLearningActivity` with progress tracking and filter chips (All/In Progress/Completed).
-- **Settings Page**: Implemented `SettingsActivity` with profile view, logout, notification toggle, and debug "Seed Data" option.
+- **UI Redesign (Light Theme)**: Complete overhaul of all 17 layout files to a Coursera-inspired aesthetic (Blue/White). Replaced dark theme.
+- **Home Screen & Content**: Implemented `HomeActivity` with functional `CategoryAdapter` and `CourseAdapter`, displaying dummy data and AI-generated course thumbnails.
+- **New Features**: Added `CoursesActivity` for the 'Courses' tab and integrated a new app logo (`ic_launcher_new.png`).
+- **Build Environment Fixed**: Upgraded project to JDK 17, fixed Kotlin Compile Daemon issues, and resolved resource linking errors.
+- **Trainer Features**: Implemented `TrainerDashboardActivity` and `CreateCourseActivity`.
+- **Course Player**: Added `CoursePlayerActivity` for content consumption.
+- **Backend Complete**: Firebase integration remains intact and functional with new UI.
 
 ## Next Steps
 - **Polish**: Add micro-animations and final UI touches.

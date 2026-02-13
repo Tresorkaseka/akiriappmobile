@@ -49,10 +49,11 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:layout_marginEnd="8dp"
-                    app:cardBackgroundColor="@color/surface"
+                    app:cardBackgroundColor="@color/card_background"
                     app:cardCornerRadius="16dp"
-                    app:strokeColor="@color/outline"
-                    app:strokeWidth="1dp">
+                    app:cardElevation="2dp"
+                    app:strokeColor="@color/card_stroke"
+                    app:strokeWidth="0.5dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -65,7 +66,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Total Étudiants"
-                            android:textColor="@color/outline"
+                            android:textColor="@color/text_secondary"
                             android:textSize="12sp" />
 
                         <TextView
@@ -84,10 +85,11 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:layout_marginStart="8dp"
-                    app:cardBackgroundColor="@color/surface"
+                    app:cardBackgroundColor="@color/card_background"
                     app:cardCornerRadius="16dp"
-                    app:strokeColor="@color/outline"
-                    app:strokeWidth="1dp">
+                    app:cardElevation="2dp"
+                    app:strokeColor="@color/card_stroke"
+                    app:strokeWidth="0.5dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -100,7 +102,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Revenus (FC)"
-                            android:textColor="@color/outline"
+                            android:textColor="@color/text_secondary"
                             android:textSize="12sp" />
 
                         <TextView
@@ -119,7 +121,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Mes Cours"
-                android:textColor="@color/on_background"
+                android:textColor="@color/text_primary"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:layout_marginBottom="16dp" />
@@ -137,7 +139,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Vous n'avez pas encore créé de cours."
-                android:textColor="@color/outline"
+                android:textColor="@color/text_secondary"
                 android:gravity="center"
                 android:padding="32dp"
                 android:visibility="gone" />
@@ -152,9 +154,9 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
         android:text="Créer un cours"
-        android:textColor="@color/background"
+        android:textColor="@color/on_primary"
         app:icon="@drawable/ic_add"
-        app:iconTint="@color/background"
+        app:iconTint="@color/on_primary"
         app:backgroundTint="@color/primary" />
 
 </LinearLayout>

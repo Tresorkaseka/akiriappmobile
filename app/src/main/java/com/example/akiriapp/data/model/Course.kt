@@ -19,10 +19,11 @@ data class Course(
     val lessonCount: Int = 0,
     val enrollmentCount: Int = 0,
     val createdAt: Long = System.currentTimeMillis(),
-    val updatedAt: Long = System.currentTimeMillis()
+    val updatedAt: Long = System.currentTimeMillis(),
+    val imageResId: Int? = null // For local dummy data
 ) {
     // No-argument constructor for Firestore
-    constructor() : this("", "", "", 0, "", "", "", 0f, 0, null, "", 0, 0, 0L, 0L)
+    constructor() : this("", "", "", 0, "", "", "", 0f, 0, null, "", 0, 0, 0L, 0L, null)
     
     fun getFormattedPrice(): String = "$price FC"
     fun isFree(): Boolean = price == 0

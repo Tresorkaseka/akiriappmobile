@@ -1,31 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary">#0df2df</color> <!-- Premium Turquoise accent -->
-    <color name="on_primary">#000000</color>
-    <color name="primary_container">#004D40</color>
-    <color name="on_primary_container">#B2DFDB</color>
-    <color name="secondary">#3211d4</color> <!-- Deep blue accent -->
-    <color name="on_secondary">#FFFFFF</color>
-    <color name="background">#000000</color> <!-- Pure black background -->
-    <color name="on_background">#FFFFFF</color>
-    <color name="surface">#121212</color> <!-- Dark surface for glassmorphism start -->
-    <color name="on_surface">#FFFFFF</color>
-    <color name="outline">#444444</color>
-    
-    <!-- Custom Turquoise Tones -->
-    <color name="turquoise_accent">#0df2df</color>
-    <color name="turquoise_dim">#00796B</color>
-    <color name="deep_blue">#1A237E</color>
-    <color name="glass_white">#1AFFFFFF</color> <!-- 10% White for glass effect -->
-    <color name="glass_turquoise">#1A0DF2DF</color> <!-- 10% Turquoise for glass effect -->
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- Akiri Design System — Coursera-Inspired    -->
+    <!-- Light Theme / Professional Education       -->
+    <!-- ═══════════════════════════════════════════ -->
 
-    <!-- Colors for legacy support/default themes -->
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
+    <!-- Primary: Coursera Blue -->
+    <color name="primary">#0056D2</color>
+    <color name="on_primary">#FFFFFF</color>
+    <color name="primary_container">#D6E4FF</color>
+    <color name="on_primary_container">#001A41</color>
+
+    <!-- Secondary: Navy -->
+    <color name="secondary">#2A4365</color>
+    <color name="on_secondary">#FFFFFF</color>
+    <color name="tertiary">#38A169</color>         <!-- Success Green -->
+    <color name="on_tertiary">#FFFFFF</color>
+    <color name="tertiary_container">#C6F6D5</color>
+    <color name="on_tertiary_container">#1C4532</color>
+
+    <!-- Backgrounds & Surfaces -->
+    <color name="background">#FFFFFF</color>
+    <color name="on_background">#1A1A2E</color>
+    <color name="surface">#F7F8FA</color>
+    <color name="on_surface">#1A1A2E</color>
+    <color name="surface_variant">#EDF2F7</color>
+    <color name="outline">#CBD5E0</color>
+
+    <!-- Custom Semantic Colors -->
+    <color name="text_primary">#1A1A2E</color>
+    <color name="text_secondary">#718096</color>
+    <color name="text_hint">#A0AEC0</color>
+    <color name="card_background">#FFFFFF</color>
+    <color name="card_stroke">#E2E8F0</color>
+    <color name="divider">#EDF2F7</color>
+
+    <!-- Accent Tones -->
+    <color name="primary_light">#E8F0FE</color>          <!-- Light blue tint for chips/tags -->
+    <color name="primary_dim">#003D99</color>             <!-- Darker blue for pressed states -->
+    <color name="hero_gradient_start">#0056D2</color>
+    <color name="hero_gradient_end">#1A237E</color>
+
+    <!-- Status Colors -->
+    <color name="error">#E53E3E</color>
+    <color name="on_error">#FFFFFF</color>
+    <color name="warning">#DD6B20</color>
+    <color name="success">#38A169</color>
+
+    <!-- Bottom Nav -->
+    <color name="nav_active">#0056D2</color>
+    <color name="nav_inactive">#A0AEC0</color>
+
+    <!-- Legacy / System -->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="error">#B00020</color>
+
+    <!-- Backward compatibility aliases -->
+    <color name="turquoise_accent">@color/primary</color>
+    <color name="turquoise_dim">@color/primary_dim</color>
+    <color name="deep_blue">@color/secondary</color>
+    <color name="glass_white">#0DFFFFFF</color>
+    <color name="glass_turquoise">#1A0056D2</color>
 </resources>

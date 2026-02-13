@@ -3,9 +3,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_launcher_new"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/ic_launcher_new"
         android:supportsRtl="true"
         android:theme="@style/Theme.Akiriapp">
         <activity
@@ -23,6 +23,7 @@
         <activity android:name=".auth.RoleSelectionActivity" />
         <activity android:name=".forum.ForumActivity" />
         <activity android:name=".course.CourseDetailsActivity" />
+        <activity android:name=".CoursesActivity" />
         <activity android:name=".learning.MyLearningActivity" />
         <activity
             android:name=".settings.SettingsActivity"

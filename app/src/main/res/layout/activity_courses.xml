@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background">
+
+    <!-- Header -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background"
+        app:elevation="0dp">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/nav_courses"
+                android:textColor="@color/text_primary"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvAllCourses"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:padding="16dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+    <!-- Bottom Nav (Shared style) -->
+    <!-- We can reuse or just implement back logic. For now, let's keep it simple as a separate activity without duplicating the bottom nav logic everywhere unless needed. 
+         But typically bottom nav persists. For this task, I'll just make it a stand-alone activity accessed from Home.
+         Actually, the user expects bottom nav to work. So I should include it or make `HomeActivity` a single activity with fragments. 
+         Given the current structure uses Activities for everything (Forum, Settings, etc.), I'll stick to Activity pattern but maybe exclude bottom nav here to keep it simple, or include it. 
+         Let's include it for consistency if possible, or just back button. 
+         For "Explorer" tab, usually it HAS bottom nav. 
+         I will add bottom nav to `activity_courses.xml` to match Home. -->
+    
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/surface"
+        app:menu="@menu/bottom_nav_menu"
+        app:labelVisibilityMode="labeled"
+        app:itemIconTint="@color/primary"
+        app:itemTextColor="@color/primary"
+        app:itemActiveIndicatorStyle="@null" 
+        app:elevation="8dp"/>
+
+</LinearLayout>

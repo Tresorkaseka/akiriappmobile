@@ -38,6 +38,12 @@ class CourseAdapter(
             binding.tvPrice.text = course.getFormattedPrice()
             binding.ratingBar.rating = course.rating
             binding.tvRating.text = String.format("%.1f", course.rating)
+
+            if (course.imageResId != null) {
+                binding.ivThumbnail.setImageResource(course.imageResId)
+            } else {
+                binding.ivThumbnail.setImageResource(com.example.akiriapp.R.drawable.gradient_course_hero)
+            }
             
             binding.root.setOnClickListener {
                 onCourseClick(course)

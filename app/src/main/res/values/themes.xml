@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="Theme.Akiriapp" parent="Theme.Material3.DayNight.NoActionBar">
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- Akiri Theme — Light / Coursera Inspired    -->
+    <!-- ═══════════════════════════════════════════ -->
+    <style name="Theme.Akiriapp" parent="Theme.Material3.Light.NoActionBar">
         <!-- Brand Colors -->
         <item name="colorPrimary">@color/primary</item>
         <item name="colorOnPrimary">@color/on_primary</item>
@@ -9,28 +12,37 @@
         <item name="colorOnPrimaryContainer">@color/on_primary_container</item>
         <item name="colorSecondary">@color/secondary</item>
         <item name="colorOnSecondary">@color/on_secondary</item>
+        <item name="colorTertiary">@color/tertiary</item>
+        <item name="colorOnTertiary">@color/on_tertiary</item>
+        <item name="colorTertiaryContainer">@color/tertiary_container</item>
+        <item name="colorOnTertiaryContainer">@color/on_tertiary_container</item>
         <item name="android:colorBackground">@color/background</item>
         <item name="colorOnBackground">@color/on_background</item>
         <item name="colorSurface">@color/surface</item>
         <item name="colorOnSurface">@color/on_surface</item>
+        <item name="colorSurfaceVariant">@color/surface_variant</item>
         <item name="colorOutline">@color/outline</item>
+        <item name="colorError">@color/error</item>
 
-        <!-- Status Bar & Navigation Bar (Pure Black) -->
-        <item name="android:statusBarColor">@color/black</item>
-        <item name="android:navigationBarColor">@color/black</item>
-        <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
+        <!-- Status Bar & Navigation Bar (White / Light) -->
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:navigationBarColor">@color/white</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">true</item>
 
         <!-- Typography -->
-        <item name="android:fontFamily">sans-serif-medium</item>
-        
+        <item name="android:fontFamily">sans-serif</item>
+
         <!-- Shape -->
         <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.Akiri.Small</item>
         <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.Akiri.Medium</item>
         <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.Akiri.Large</item>
+
         <!-- Window Transitions -->
         <item name="android:windowAnimationStyle">@style/AppTheme.WindowAnimation</item>
     </style>
 
+    <!-- Smooth Slide Transitions -->
     <style name="AppTheme.WindowAnimation" parent="android:Animation.Activity">
         <item name="android:activityOpenEnterAnimation">@anim/slide_in_right</item>
         <item name="android:activityOpenExitAnimation">@anim/slide_out_left</item>
@@ -38,18 +50,85 @@
         <item name="android:activityCloseExitAnimation">@anim/slide_out_right</item>
     </style>
 
+    <!-- Shape System -->
     <style name="ShapeAppearance.Akiri.Small" parent="ShapeAppearance.Material3.SmallComponent">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">8dp</item>
-    </style>
-
-    <style name="ShapeAppearance.Akiri.Medium" parent="ShapeAppearance.Material3.MediumComponent">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">12dp</item>
     </style>
 
-    <style name="ShapeAppearance.Akiri.Large" parent="ShapeAppearance.Material3.LargeComponent">
+    <style name="ShapeAppearance.Akiri.Medium" parent="ShapeAppearance.Material3.MediumComponent">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">16dp</item>
     </style>
+
+    <style name="ShapeAppearance.Akiri.Large" parent="ShapeAppearance.Material3.LargeComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">24dp</item>
+    </style>
+
+    <!-- ═══════════════════════════════════════════ -->
+    <!-- Component Styles                           -->
+    <!-- ═══════════════════════════════════════════ -->
+
+    <!-- Base Akiri style (required for dot-notation children) -->
+    <style name="Akiri" parent="" />
+    <style name="Akiri.Text" parent="" />
+    <style name="Akiri.Button" parent="" />
+
+    <!-- Primary Button -->
+    <style name="Akiri.Button.Primary" parent="Widget.Material3.Button">
+        <item name="backgroundTint">@color/primary</item>
+        <item name="android:textColor">@color/on_primary</item>
+        <item name="cornerRadius">16dp</item>
+        <item name="android:paddingTop">14dp</item>
+        <item name="android:paddingBottom">14dp</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- Outlined Button -->
+    <style name="Akiri.Button.Outlined" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="android:textColor">@color/primary</item>
+        <item name="strokeColor">@color/primary</item>
+        <item name="cornerRadius">16dp</item>
+        <item name="android:paddingTop">14dp</item>
+        <item name="android:paddingBottom">14dp</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <!-- Text Input -->
+    <style name="Akiri.TextInput" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="boxCornerRadiusBottomEnd">12dp</item>
+        <item name="boxCornerRadiusBottomStart">12dp</item>
+        <item name="boxCornerRadiusTopEnd">12dp</item>
+        <item name="boxCornerRadiusTopStart">12dp</item>
+        <item name="boxStrokeColor">@color/primary</item>
+        <item name="hintTextColor">@color/primary</item>
+    </style>
+
+    <!-- Section Header Text -->
+    <style name="Akiri.Text.SectionHeader">
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <!-- Card Style -->
+    <style name="Akiri.Card" parent="Widget.Material3.CardView.Elevated">
+        <item name="cardBackgroundColor">@color/card_background</item>
+        <item name="cardCornerRadius">16dp</item>
+        <item name="cardElevation">2dp</item>
+        <item name="strokeWidth">0dp</item>
+    </style>
+
+    <!-- Search Bar Style -->
+    <style name="Akiri.SearchBar">
+        <item name="cardBackgroundColor">@color/surface</item>
+        <item name="cardCornerRadius">28dp</item>
+        <item name="cardElevation">0dp</item>
+        <item name="strokeColor">@color/outline</item>
+        <item name="strokeWidth">1dp</item>
+    </style>
+
 </resources>

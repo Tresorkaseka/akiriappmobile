@@ -16,11 +16,13 @@
             android:id="@+id/collapsingToolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:contentScrim="@color/surface"
+            app:contentScrim="@color/background"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:expandedTitleGravity="bottom|start"
             app:expandedTitleMarginStart="16dp"
             app:expandedTitleMarginBottom="72dp"
+            app:collapsedTitleTextColor="@color/text_primary"
+            app:expandedTitleTextColor="@color/white"
             app:collapsedTitleTextAppearance="@style/TextAppearance.Material3.TitleLarge"
             app:expandedTitleTextAppearance="@style/TextAppearance.Material3.HeadlineMedium">
 
@@ -46,7 +48,7 @@
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
                 app:navigationIcon="@drawable/ic_back"
-                app:navigationIconTint="@color/on_background" />
+                app:navigationIconTint="@color/white" />
 
             <!-- Course Info Overlay -->
             <LinearLayout
@@ -62,7 +64,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Développement Android"
-                    android:textColor="@color/on_background"
+                    android:textColor="@color/white"
                     android:textSize="24sp"
                     android:textStyle="bold" />
 
@@ -79,7 +81,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Programmation"
-                        app:chipBackgroundColor="@color/glass_turquoise"
+                        android:textColor="@color/white"
+                        app:chipBackgroundColor="#33FFFFFF"
                         app:chipStrokeWidth="0dp" />
 
                     <RatingBar
@@ -92,7 +95,7 @@
                         android:numStars="5"
                         android:rating="4.5"
                         android:stepSize="0.5"
-                        android:progressTint="@color/primary" />
+                        android:progressTint="@color/warning" />
 
                     <TextView
                         android:id="@+id/tvRating"
@@ -100,7 +103,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="4dp"
                         android:text="4.5"
-                        android:textColor="@color/on_surface"
+                        android:textColor="#CCFFFFFF"
                         android:textSize="14sp" />
                 </LinearLayout>
 
@@ -115,16 +118,17 @@
                     <com.google.android.material.card.MaterialCardView
                         android:layout_width="32dp"
                         android:layout_height="32dp"
-                        app:cardBackgroundColor="@color/primary"
+                        app:cardBackgroundColor="@color/on_primary"
                         app:cardCornerRadius="16dp"
                         app:cardElevation="0dp">
+
                         <ImageView
                             android:id="@+id/ivInstructorAvatar"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:src="@drawable/ic_trainer"
                             android:scaleType="centerInside"
-                            app:tint="@color/on_primary" />
+                            android:src="@drawable/ic_trainer"
+                            app:tint="@color/primary" />
                     </com.google.android.material.card.MaterialCardView>
 
                     <TextView
@@ -133,7 +137,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:text="Jean-Pierre Mukendi"
-                        android:textColor="@color/outline"
+                        android:textColor="#CCFFFFFF"
                         android:textSize="14sp" />
                 </LinearLayout>
             </LinearLayout>
@@ -158,12 +162,13 @@
                 android:id="@+id/tabLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/surface"
+                android:background="@color/background"
                 app:tabIndicatorColor="@color/primary"
                 app:tabSelectedTextColor="@color/primary"
-                app:tabTextColor="@color/outline"
+                app:tabTextColor="@color/text_secondary"
                 app:tabMode="fixed"
-                app:tabGravity="fill">
+                app:tabGravity="fill"
+                app:tabRippleColor="@color/primary_light">
 
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
@@ -181,6 +186,12 @@
                     android:text="@string/tab_reviews" />
             </com.google.android.material.tabs.TabLayout>
 
+            <!-- Divider -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/divider" />
+
             <!-- Content Area -->
             <LinearLayout
                 android:id="@+id/contentAbout"
@@ -194,7 +205,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Apprenez les fondamentaux du développement Android avec Kotlin. Ce cours complet vous guidera de zéro à la publication de votre première application sur le Play Store."
-                    android:textColor="@color/outline"
+                    android:textColor="@color/text_secondary"
                     android:textSize="15sp"
                     android:lineSpacingExtra="4dp" />
 
@@ -204,7 +215,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
                     android:text="@string/course_what_you_learn"
-                    android:textColor="@color/on_background"
+                    android:textColor="@color/text_primary"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -223,7 +234,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
                     android:text="@string/course_prerequisites"
-                    android:textColor="@color/on_background"
+                    android:textColor="@color/text_primary"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -233,7 +244,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="• Connaissances de base en programmation\n• Un ordinateur (Windows, Mac ou Linux)\n• Motivation et curiosité"
-                    android:textColor="@color/outline"
+                    android:textColor="@color/text_secondary"
                     android:textSize="14sp"
                     android:lineSpacingExtra="6dp" />
 
@@ -246,9 +257,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        app:cardBackgroundColor="@color/surface"
+        app:cardBackgroundColor="@color/card_background"
         app:cardCornerRadius="0dp"
-        app:cardElevation="8dp">
+        app:cardElevation="8dp"
+        app:strokeColor="@color/divider"
+        app:strokeWidth="1dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -259,26 +272,20 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnPreview"
-                style="@style/Widget.Material3.Button.OutlinedButton"
+                style="@style/Akiri.Button.Outlined"
                 android:layout_width="0dp"
-                android:layout_height="56dp"
+                android:layout_height="52dp"
                 android:layout_weight="1"
-                android:text="@string/course_free_preview"
-                android:textColor="@color/primary"
-                app:cornerRadius="16dp"
-                app:strokeColor="@color/primary" />
+                android:text="@string/course_free_preview" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnEnroll"
+                style="@style/Akiri.Button.Primary"
                 android:layout_width="0dp"
-                android:layout_height="56dp"
+                android:layout_height="52dp"
                 android:layout_marginStart="12dp"
                 android:layout_weight="1.5"
-                android:text="S'inscrire - 15 000 FC"
-                android:textColor="@color/on_primary"
-                android:textStyle="bold"
-                app:backgroundTint="@color/primary"
-                app:cornerRadius="16dp" />
+                android:text="S'inscrire - 15 000 FC" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 

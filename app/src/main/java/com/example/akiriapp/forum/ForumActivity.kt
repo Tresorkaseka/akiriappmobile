@@ -93,7 +93,7 @@ class ForumActivity : AppCompatActivity() {
 
     private fun handleComment(post: ForumPost) {
         // TODO: Navigate to comments screen
-        Toast.makeText(this, "Commentaires à venir", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Commentaires pour \"${post.title}\" à venir", Toast.LENGTH_SHORT).show()
     }
 
     private fun handleShare(post: ForumPost) {

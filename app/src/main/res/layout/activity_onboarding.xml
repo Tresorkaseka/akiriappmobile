@@ -7,12 +7,12 @@
     android:background="@color/background"
     tools:context=".onboarding.OnboardingActivity">
 
-    <!-- Illustration Area with Gradient Overlay -->
+    <!-- Hero Illustration Area -->
     <FrameLayout
         android:id="@+id/flHero"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintHeight_percent="0.55"
+        app:layout_constraintHeight_percent="0.50"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -23,59 +23,65 @@
             android:layout_height="match_parent"
             android:contentDescription="@string/onboarding_hero_content_description"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_launcher_background"
-            app:tint="@color/turquoise_dim" />
+            android:src="@drawable/onboarding_hero" />
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="120dp"
             android:layout_gravity="bottom"
             android:background="@drawable/gradient_bottom_fade" />
     </FrameLayout>
 
-    <TextView
-        android:id="@+id/tvTitle"
+    <!-- Content Area -->
+    <LinearLayout
+        android:id="@+id/contentArea"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"
-        android:layout_marginTop="32dp"
-        android:fontFamily="sans-serif-medium"
-        android:text="@string/onboarding_title"
-        android:textAlignment="center"
-        android:textColor="@color/on_background"
-        android:textSize="28sp"
-        android:textStyle="bold"
+        android:layout_marginTop="24dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/flHero" />
+        app:layout_constraintTop_toBottomOf="@id/flHero">
 
-    <TextView
-        android:id="@+id/tvDescription"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="32dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="sans-serif"
-        android:text="@string/onboarding_description"
-        android:textAlignment="center"
-        android:textColor="@color/outline"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/onboarding_title"
+            android:textAlignment="center"
+            android:textColor="@color/on_background"
+            android:textSize="28sp"
+            android:textStyle="bold" />
 
+        <TextView
+            android:id="@+id/tvDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:fontFamily="sans-serif"
+            android:lineSpacingExtra="4dp"
+            android:text="@string/onboarding_description"
+            android:textAlignment="center"
+            android:textColor="@color/on_surface"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <!-- CTA Button -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnGetStarted"
         android:layout_width="0dp"
-        android:layout_height="60dp"
+        android:layout_height="56dp"
         android:layout_marginHorizontal="24dp"
         android:layout_marginBottom="32dp"
         android:text="@string/onboarding_button_text"
         android:textColor="@color/on_primary"
-        android:textSize="18sp"
+        android:textSize="17sp"
         android:textStyle="bold"
         app:backgroundTint="@color/primary"
-        app:cornerRadius="28dp"
+        app:cornerRadius="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
