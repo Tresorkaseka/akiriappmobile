@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.akiriapp.data.model.Course
 import com.example.akiriapp.databinding.ItemCourseCardBinding
 
@@ -39,7 +40,14 @@ class CourseAdapter(
             binding.ratingBar.rating = course.rating
             binding.tvRating.text = String.format("%.1f", course.rating)
 
-            if (course.imageResId != null) {
+            if (!course.thumbnailUrl.isNullOrEmpty()) {
+                Glide.with(binding.root.context)
+                    .load(course.thumbnailUrl)
+                    .centerCrop()
+                    .placeholder(com.example.akiriapp.R.drawable.gradient_course_hero)
+                    .error(com.example.akiriapp.R.drawable.gradient_course_hero)
+                    .into(binding.ivThumbnail)
+            } else if (course.imageResId != null) {
                 binding.ivThumbnail.setImageResource(course.imageResId)
             } else {
                 binding.ivThumbnail.setImageResource(com.example.akiriapp.R.drawable.gradient_course_hero)

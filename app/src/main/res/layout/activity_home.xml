@@ -36,7 +36,7 @@
                         android:id="@+id/imgLogo"
                         android:layout_width="36dp"
                         android:layout_height="36dp"
-                        android:src="@mipmap/ic_launcher" />
+                        android:src="@drawable/ic_launcher_new" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -221,6 +221,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
+                android:orientation="horizontal"
                 android:layoutAnimation="@anim/layout_animation_fall_down"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 

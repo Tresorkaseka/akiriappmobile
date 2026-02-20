@@ -24,6 +24,7 @@ class SignUpActivity : AppCompatActivity() {
         selectedRole = intent.getStringExtra("SELECTED_ROLE") ?: "student"
 
         binding.tvLogin.setOnClickListener {
+            startActivity(Intent(this, LoginActivity::class.java))
             finish()
         }
 

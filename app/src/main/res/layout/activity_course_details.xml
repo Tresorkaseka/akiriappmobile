@@ -249,6 +249,30 @@
                     android:lineSpacingExtra="6dp" />
 
             </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/contentProgram"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/tvProgramEmpty"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Aucune leçon n'a encore été ajoutée par le formateur."
+                    android:textColor="@color/text_secondary"
+                    android:visibility="gone" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvProgram"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false" />
+            </LinearLayout>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
@@ -274,18 +298,22 @@
                 android:id="@+id/btnPreview"
                 style="@style/Akiri.Button.Outlined"
                 android:layout_width="0dp"
-                android:layout_height="52dp"
+                android:layout_height="56dp"
                 android:layout_weight="1"
-                android:text="@string/course_free_preview" />
+                android:text="Aperçu" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnEnroll"
                 style="@style/Akiri.Button.Primary"
                 android:layout_width="0dp"
-                android:layout_height="52dp"
+                android:layout_height="56dp"
                 android:layout_marginStart="12dp"
-                android:layout_weight="1.5"
-                android:text="S'inscrire - 15 000 FC" />
+                android:layout_weight="1"
+                android:text="S'inscrire - 15 000 FC"
+                app:autoSizeTextType="uniform"
+                app:autoSizeMinTextSize="12sp"
+                app:autoSizeMaxTextSize="16sp"
+                app:autoSizeStepGranularity="1sp" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 

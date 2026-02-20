@@ -18,17 +18,27 @@ class CourseRepository {
      */
     suspend fun getCourses(category: String? = null, limit: Long = 20): Result<List<Course>> {
         return try {
-            var query: Query = coursesCollection.orderBy("createdAt", Query.Direction.DESCENDING)
+            var query: Query = coursesCollection
             
             if (!category.isNullOrEmpty()) {
                 query = query.whereEqualTo("category", category)
+            } else {
+                query = query.orderBy("createdAt", Query.Direction.DESCENDING)
             }
             
             val snapshot = query.limit(limit).get().await()
             val courses = snapshot.documents.mapNotNull { doc ->
                 doc.toObject(Course::class.java)?.copy(id = doc.id)
             }
-            Result.success(courses)
+            
+            // Sort in memory if we used a category filter (to avoid composite index requirement)
+            val finalCourses = if (!category.isNullOrEmpty()) {
+                courses.sortedByDescending { it.createdAt }
+            } else {
+                courses
+            }
+            
+            Result.success(finalCourses)
         } catch (e: Exception) {
             Result.failure(e)
         }
@@ -58,12 +68,13 @@ class CourseRepository {
         return try {
             val snapshot = coursesCollection
                 .whereEqualTo("instructorId", instructorId)
-                .orderBy("createdAt", Query.Direction.DESCENDING)
+                // Removed orderBy to avoid requiring a composite index: (instructorId ASC, createdAt DESC)
                 .get().await()
             
             val courses = snapshot.documents.mapNotNull { doc ->
                 doc.toObject(Course::class.java)?.copy(id = doc.id)
-            }
+            }.sortedByDescending { it.createdAt } // Sort in memory instead
+            
             Result.success(courses)
         } catch (e: Exception) {
             Result.failure(e)

@@ -14,12 +14,21 @@ import com.example.akiriapp.forum.ForumActivity
 import com.example.akiriapp.learning.MyLearningActivity
 import com.example.akiriapp.settings.SettingsActivity
 
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
+import com.example.akiriapp.data.repository.CourseRepository
+import com.example.akiriapp.data.repository.StorageRepository
+import android.util.Log
+import android.net.Uri
+import com.example.akiriapp.R
+
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityHomeBinding
     private lateinit var categoryAdapter: CategoryAdapter
     private lateinit var popularCourseAdapter: CourseAdapter
     private lateinit var recommendedCourseAdapter: CourseAdapter
+    private val courseRepository = CourseRepository()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +38,9 @@ class HomeActivity : AppCompatActivity() {
         setupAdapters()
         setupBottomNavigation()
         loadDummyData()
+        
+        // TEMPORARY SCRIPT TO UPLOAD NEW IMAGES FOR EXISTING COURSES
+        uploadMissingThumbnails()
         
         binding.imgLogo.setOnClickListener { 
             // Refresh or scroll to top
@@ -61,10 +73,7 @@ class HomeActivity : AppCompatActivity() {
             openCourseDetails(course)
         }
         binding.rvRecommended.apply {
-            layoutManager = LinearLayoutManager(this@HomeActivity, LinearLayoutManager.VERTICAL, false) // Or horizontal if layout implies list
-            // Based on layout XML, looks like vertical list? 
-            // Wait, usually recommended is vertical list in home. Re-check XML layout manager if defined there or override here.
-            // XML says LinearLayoutManager. Default is vertical. Let's keep it vertical for Recommended.
+            layoutManager = LinearLayoutManager(this@HomeActivity, LinearLayoutManager.HORIZONTAL, false)
             adapter = recommendedCourseAdapter
         }
     }
@@ -80,11 +89,6 @@ class HomeActivity : AppCompatActivity() {
         binding.bottomNavigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.nav_home -> true
-                R.id.nav_courses -> {
-                    startActivity(Intent(this, CoursesActivity::class.java))
-                    overridePendingTransition(0, 0)
-                    true
-                }
                 R.id.nav_forum -> {
                     startActivity(Intent(this, ForumActivity::class.java))
                     overridePendingTransition(0, 0)
@@ -106,19 +110,60 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun loadDummyData() {
-        // Dummy Courses
-        val popularCourses = listOf(
-            Course("1", "Introduction to Python", "Master Python basics in 4 weeks", 15000, "inst1", "Dr. Kanyinda", "Programming", 4.5f, 120, null, "10h", 24, 150, 0, 0, R.drawable.course_python),
-            Course("2", "Digital Marketing 101", "Learn SEO, SEM, and Social Media", 20000, "inst2", "Sarah Mbombo", "Marketing", 4.2f, 85, null, "8h", 15, 200, 0, 0, R.drawable.course_marketing),
-            Course("3", "Mobile App Dev with Kotlin", "Build Android apps from scratch", 25000, "inst3", "Jean-Pierre Mukendi", "Development", 4.8f, 300, null, "20h", 45, 500, 0, 0, R.drawable.course_kotlin)
-        )
-        popularCourseAdapter.submitList(popularCourses)
+        lifecycleScope.launch {
+            // Load Popular
+            courseRepository.getPopularCourses(5).onSuccess { courses ->
+                if (courses.isNotEmpty()) {
+                    popularCourseAdapter.submitList(courses)
+                } else {
+                    Log.d("HomeActivity", "No popular courses found, loading recents")
+                    // If no popular courses, fall back to recent ones to ensure learners see something
+                    courseRepository.getCourses(limit = 5).onSuccess { recentCourses ->
+                         popularCourseAdapter.submitList(recentCourses)
+                    }
+                }
+            }.onFailure { e ->
+                Log.e("HomeActivity", "Error loading popular: ${e.message}")
+            }
 
-        val recommendedCourses = listOf(
-            Course("4", "Financial Literacy", "Manage your personal finances", 10000, "inst4", "Banque Centrale", "Finance", 4.6f, 50, null, "5h", 10, 80, 0, 0, R.drawable.course_finance),
-            Course("5", "Graphic Design Masterclass", "Photoshop, Illustrator, InDesign", 18000, "inst5", "Creative Studio", "Design", 4.7f, 150, null, "15h", 30, 120, 0, 0, R.drawable.course_design),
-            Course("3", "Mobile App Dev with Kotlin", "Build Android apps from scratch", 25000, "inst3", "Jean-Pierre Mukendi", "Development", 4.8f, 300, null, "20h", 45, 500, 0, 0, R.drawable.course_kotlin)
-        )
-        recommendedCourseAdapter.submitList(recommendedCourses)
+            // Load Recommended
+            courseRepository.getCourses(limit = 10).onSuccess { courses ->
+                if (courses.isNotEmpty()) {
+                    recommendedCourseAdapter.submitList(courses)
+                } else {
+                    Log.d("HomeActivity", "No recommended courses found")
+                    recommendedCourseAdapter.submitList(emptyList())
+                }
+            }.onFailure { e ->
+                Log.e("HomeActivity", "Error loading recommended: ${e.message}")
+            }
+        }
+    }
+
+    private fun uploadMissingThumbnails() {
+        lifecycleScope.launch {
+            val storageRepo = StorageRepository()
+            val categoriesMap = mapOf(
+                "Programmation" to R.drawable.generated_course_programmation,
+                "Business" to R.drawable.generated_course_business,
+                "Design" to R.drawable.generated_course_design,
+                "Langues" to R.drawable.generated_course_languages
+            )
+            
+            courseRepository.getCourses(limit = 100).onSuccess { courses ->
+                courses.filter { it.thumbnailUrl == null }.forEach { course ->
+                    val resId = categoriesMap[course.category] ?: R.drawable.generated_course_programmation
+                    val uri = Uri.parse("android.resource://com.example.akiriapp/$resId")
+                    
+                    Log.d("HomeActivity", "Uploading thumbnail for course ${course.title}")
+                    storageRepo.uploadCourseThumbnail(uri).onSuccess { downloadUrl ->
+                        courseRepository.updateCourse(course.id, mapOf("thumbnailUrl" to downloadUrl))
+                        Log.d("HomeActivity", "Successfully updated ${course.title} with generic cover.")
+                    }.onFailure { e ->
+                        Log.e("HomeActivity", "Failed to upload for ${course.title}: ${e.message}")
+                    }
+                }
+            }
+        }
     }
 }

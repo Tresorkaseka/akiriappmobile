@@ -1,10 +1,10 @@
 # Tasks Index
 
 ## In Progress
-- [TASK010] - Fix Build Environment - Fixing corrupted Gradle wrapper.
-- [TASK004] Implement Firebase Logic - Connecting UI to FirebaseAuth and Firestore.
+- (None currently)
+
 ## Pending
-- [TASK011] - Final Polish & Animations - Adding micro-interactions and transitions.
+- [TASK014] - Release Preparation - Generating signed APK/Bundle and final testing.
 
 ## Completed
 - [TASK001] Initialization and Memory Bank setup - Setting up the foundation for the project.
@@ -18,5 +18,9 @@
 - [TASK009] Trainer Dashboard & Course Player - Completed trainer and player flows.
 - [TASK010] Fix Build Environment - Completed Gradle wrapper fix and XML corrections.
 - [TASK011] UI Redesign (Light Theme) & Home Implementation - Full redesign to Coursera-style light theme and populated Home screen.
+- [TASK012] Final Polish & Animations - Adding micro-interactions and transitions.
+- [TASK015] - Fixing Trainer and Learner Flows - Completed end-to-end debugging and connection.
+- [TASK016] - Media Uploads Integration - Complete implementation of Cover Image and Video Module uploads and consumption via ExoPlayer.
 
 ## Abandoned
+- [TASK013] Video Hosting Research - Abandoned in favor of custom Firebase Storage + ExoPlayer implementation shown in TASK016.

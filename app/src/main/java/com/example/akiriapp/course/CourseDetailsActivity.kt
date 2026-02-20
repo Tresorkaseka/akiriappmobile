@@ -4,10 +4,15 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import android.view.View
+import com.bumptech.glide.Glide
 import com.example.akiriapp.R
+import com.example.akiriapp.adapter.LessonAdapter
 import com.example.akiriapp.data.repository.AuthRepository
 import com.example.akiriapp.data.repository.CourseRepository
 import com.example.akiriapp.data.repository.EnrollmentRepository
+import com.example.akiriapp.data.repository.LessonRepository
 import com.example.akiriapp.databinding.ActivityCourseDetailsBinding
 import kotlinx.coroutines.launch
 
@@ -17,6 +22,10 @@ class CourseDetailsActivity : AppCompatActivity() {
     private val authRepository = AuthRepository()
     private val courseRepository = CourseRepository()
     private val enrollmentRepository = EnrollmentRepository()
+    private val lessonRepository = LessonRepository()
+    private val lessonAdapter = LessonAdapter { lesson ->
+        // Could play specific lesson if enrolled, else prompt.
+    }
     
     private var courseId: String = ""
     private var isEnrolled: Boolean = false
@@ -29,9 +38,17 @@ class CourseDetailsActivity : AppCompatActivity() {
         courseId = intent.getStringExtra("COURSE_ID") ?: ""
         
         setupToolbar()
+        setupRecyclerView()
         setupTabs()
         setupButtons()
         loadCourseData()
+    }
+    
+    private fun setupRecyclerView() {
+        binding.rvProgram.apply {
+            layoutManager = LinearLayoutManager(this@CourseDetailsActivity)
+            adapter = lessonAdapter
+        }
     }
 
     private fun setupToolbar() {
@@ -87,6 +104,16 @@ class CourseDetailsActivity : AppCompatActivity() {
                 binding.tvInstructorName.text = course.instructorName
                 binding.tvDescription.text = course.description
                 
+                // Load Cover Image
+                if (!course.thumbnailUrl.isNullOrEmpty()) {
+                    Glide.with(this@CourseDetailsActivity)
+                        .load(course.thumbnailUrl)
+                        .centerCrop()
+                        .placeholder(R.drawable.gradient_course_hero)
+                        .error(R.drawable.gradient_course_hero)
+                        .into(binding.ivCourseHero)
+                }
+                
                 // Update enroll button with price
                 binding.btnEnroll.text = getString(R.string.course_enroll_price, course.price.toString())
             }.onFailure { e ->
@@ -101,6 +128,18 @@ class CourseDetailsActivity : AppCompatActivity() {
                     if (enrolled) {
                         binding.btnEnroll.text = getString(R.string.btn_continue)
                     }
+                }
+            }
+
+            // Load and display lessons for Program tab
+            lessonRepository.getLessonsForCourse(courseId).onSuccess { lessons ->
+                if (lessons.isEmpty()) {
+                    binding.tvProgramEmpty.visibility = View.VISIBLE
+                    binding.rvProgram.visibility = View.GONE
+                } else {
+                    binding.tvProgramEmpty.visibility = View.GONE
+                    binding.rvProgram.visibility = View.VISIBLE
+                    lessonAdapter.submitList(lessons)
                 }
             }
         }
@@ -136,16 +175,18 @@ class CourseDetailsActivity : AppCompatActivity() {
     }
 
     private fun showAboutContent() {
-        binding.contentAbout.visibility = android.view.View.VISIBLE
+        binding.contentAbout.visibility = View.VISIBLE
+        binding.contentProgram.visibility = View.GONE
     }
 
     private fun showProgramContent() {
-        binding.contentAbout.visibility = android.view.View.GONE
-        // TODO: Show program RecyclerView with lessons
+        binding.contentAbout.visibility = View.GONE
+        binding.contentProgram.visibility = View.VISIBLE
     }
 
     private fun showReviewsContent() {
-        binding.contentAbout.visibility = android.view.View.GONE
+        binding.contentAbout.visibility = View.GONE
+        binding.contentProgram.visibility = View.GONE
         // TODO: Show reviews RecyclerView
     }
 }

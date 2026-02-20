@@ -7,67 +7,23 @@
     android:background="@color/background"
     tools:context=".onboarding.OnboardingActivity">
 
-    <!-- Hero Illustration Area -->
-    <FrameLayout
-        android:id="@+id/flHero"
-        android:layout_width="0dp"
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintHeight_percent="0.50"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintBottom_toTopOf="@id/llDots"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/ivHero"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:contentDescription="@string/onboarding_hero_content_description"
-            android:scaleType="centerCrop"
-            android:src="@drawable/onboarding_hero" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:layout_gravity="bottom"
-            android:background="@drawable/gradient_bottom_fade" />
-    </FrameLayout>
-
-    <!-- Content Area -->
     <LinearLayout
-        android:id="@+id/contentArea"
-        android:layout_width="0dp"
+        android:id="@+id/llDots"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="24dp"
-        android:layout_marginTop="24dp"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
+        android:layout_marginBottom="24dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/btnGetStarted"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/flHero">
-
-        <TextView
-            android:id="@+id/tvTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-medium"
-            android:text="@string/onboarding_title"
-            android:textAlignment="center"
-            android:textColor="@color/on_background"
-            android:textSize="28sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/tvDescription"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:fontFamily="sans-serif"
-            android:lineSpacingExtra="4dp"
-            android:text="@string/onboarding_description"
-            android:textAlignment="center"
-            android:textColor="@color/on_surface"
-            android:textSize="16sp" />
-    </LinearLayout>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <!-- CTA Button -->
     <com.google.android.material.button.MaterialButton
@@ -76,7 +32,7 @@
         android:layout_height="56dp"
         android:layout_marginHorizontal="24dp"
         android:layout_marginBottom="32dp"
-        android:text="@string/onboarding_button_text"
+        android:text="@string/onboarding_button_next"
         android:textColor="@color/on_primary"
         android:textSize="17sp"
         android:textStyle="bold"
