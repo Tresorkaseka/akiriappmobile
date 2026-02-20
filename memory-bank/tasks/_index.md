@@ -21,6 +21,7 @@
 - [TASK012] Final Polish & Animations - Adding micro-interactions and transitions.
 - [TASK015] - Fixing Trainer and Learner Flows - Completed end-to-end debugging and connection.
 - [TASK016] - Media Uploads Integration - Complete implementation of Cover Image and Video Module uploads and consumption via ExoPlayer.
+- [TASK017] - UI and Storage Fixes - Fixed Course Details UI and implemented Base64 Firestore workaround for images.
 
 ## Abandoned
 - [TASK013] Video Hosting Research - Abandoned in favor of custom Firebase Storage + ExoPlayer implementation shown in TASK016.

@@ -153,14 +153,22 @@ class HomeActivity : AppCompatActivity() {
             courseRepository.getCourses(limit = 100).onSuccess { courses ->
                 courses.filter { it.thumbnailUrl == null }.forEach { course ->
                     val resId = categoriesMap[course.category] ?: R.drawable.generated_course_programmation
-                    val uri = Uri.parse("android.resource://com.example.akiriapp/$resId")
                     
-                    Log.d("HomeActivity", "Uploading thumbnail for course ${course.title}")
-                    storageRepo.uploadCourseThumbnail(uri).onSuccess { downloadUrl ->
-                        courseRepository.updateCourse(course.id, mapOf("thumbnailUrl" to downloadUrl))
-                        Log.d("HomeActivity", "Successfully updated ${course.title} with generic cover.")
-                    }.onFailure { e ->
-                        Log.e("HomeActivity", "Failed to upload for ${course.title}: ${e.message}")
+                    try {
+                        val bitmap = android.graphics.BitmapFactory.decodeResource(resources, resId)
+                        val baos = java.io.ByteArrayOutputStream()
+                        bitmap.compress(android.graphics.Bitmap.CompressFormat.JPEG, 80, baos)
+                        val data = baos.toByteArray()
+                        
+                        Log.d("HomeActivity", "Uploading thumbnail for course ${course.title}")
+                        storageRepo.uploadCourseThumbnail(data).onSuccess { downloadUrl ->
+                            courseRepository.updateCourse(course.id, mapOf("thumbnailUrl" to downloadUrl))
+                            Log.d("HomeActivity", "Successfully updated ${course.title} with generic cover.")
+                        }.onFailure { e ->
+                            Log.e("HomeActivity", "Failed to upload for ${course.title}: ${e.message}")
+                        }
+                    } catch (e: Exception) {
+                        Log.e("HomeActivity", "Error processing image for ${course.title}: ${e.message}")
                     }
                 }
             }

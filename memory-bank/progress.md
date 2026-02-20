@@ -16,8 +16,8 @@
 - **Forum/Community**: Full Firebase integration with like/share/create post.
 - **Course Details**: Dynamic image loading and enrollment functionality.
 - **My Learning**: Firebase integration with progress tracking and filters.
-- **Trainer Dashboard**: Course creation logic including native Android Image Picking and Firebase Storage upload.
-- **Course Player**: Fully functional playback UI integrating AndroidX Media3 (ExoPlayer) streaming real lesson videos.
+- **Trainer Dashboard**: Course creation logic with native Android Image Picking. Thumbnails are compressed to Base64 and saved natively to Firestore to bypass Firebase Storage paid tier limits.
+- **Course Player**: Fully functional playback UI integrating AndroidX Media3 (ExoPlayer) (ready for external URIs like YouTube/Vimeo).
 - **Settings**: Profile management, logout, and seed data utility.
 - **Localization**: French strings and FC currency configured.
 - **Build System**: Fixed and verified Gradle wrapper 8.6 with JDK 17, and added ExoPlayer/Glide dependencies.

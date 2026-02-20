@@ -82,10 +82,10 @@ class CreateCourseActivity : AppCompatActivity() {
         Toast.makeText(this, "Création du cours en cours...", Toast.LENGTH_SHORT).show()
 
         lifecycleScope.launch {
-            // 1. Upload Image first if selected
+            // 1. Convert Image to Base64 first if selected
             var thumbnailUrl: String? = null
             selectedImageUri?.let { uri ->
-                storageRepository.uploadCourseThumbnail(uri).onSuccess { url ->
+                storageRepository.uploadCourseThumbnail(this@CreateCourseActivity, uri).onSuccess { url ->
                     thumbnailUrl = url
                 }.onFailure { e ->
                     Toast.makeText(this@CreateCourseActivity, "Erreur upload image: ${e.message}", Toast.LENGTH_SHORT).show()

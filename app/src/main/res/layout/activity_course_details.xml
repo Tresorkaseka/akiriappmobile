@@ -16,13 +16,14 @@
             android:id="@+id/collapsingToolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:fitsSystemWindows="false"
             app:contentScrim="@color/background"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:expandedTitleGravity="bottom|start"
             app:expandedTitleMarginStart="16dp"
             app:expandedTitleMarginBottom="72dp"
             app:collapsedTitleTextColor="@color/text_primary"
-            app:expandedTitleTextColor="@color/white"
+            app:expandedTitleTextColor="@android:color/transparent"
             app:collapsedTitleTextAppearance="@style/TextAppearance.Material3.TitleLarge"
             app:expandedTitleTextAppearance="@style/TextAppearance.Material3.HeadlineMedium">
 
@@ -297,9 +298,9 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnPreview"
                 style="@style/Akiri.Button.Outlined"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="56dp"
-                android:layout_weight="1"
+                android:paddingHorizontal="16dp"
                 android:text="Aperçu" />
 
             <com.google.android.material.button.MaterialButton
@@ -310,6 +311,7 @@
                 android:layout_marginStart="12dp"
                 android:layout_weight="1"
                 android:text="S'inscrire - 15 000 FC"
+                android:maxLines="1"
                 app:autoSizeTextType="uniform"
                 app:autoSizeMinTextSize="12sp"
                 app:autoSizeMaxTextSize="16sp"
