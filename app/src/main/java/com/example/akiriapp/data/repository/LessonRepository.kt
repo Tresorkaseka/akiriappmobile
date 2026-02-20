@@ -16,17 +16,18 @@ class LessonRepository {
 
     /**
      * Get all lessons for a specific course, ordered by their 'order' index.
+     * Note: Ordering locally to avoid requiring a composite index in Firestore.
      */
     suspend fun getLessonsForCourse(courseId: String): Result<List<Lesson>> {
         return try {
             val snapshot = lessonsCollection
                 .whereEqualTo("courseId", courseId)
-                .orderBy("order", Query.Direction.ASCENDING)
                 .get().await()
             
             val lessons = snapshot.documents.mapNotNull { doc ->
                 doc.toObject(Lesson::class.java)?.copy(id = doc.id)
-            }
+            }.sortedBy { it.order }
+            
             Result.success(lessons)
         } catch (e: Exception) {
             Result.failure(e)

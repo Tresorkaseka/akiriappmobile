@@ -1,48 +1,70 @@
 package com.example.akiriapp.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.ProgressBar
+import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.example.akiriapp.R
 import com.example.akiriapp.data.model.Enrollment
-import com.example.akiriapp.databinding.ItemCourseProgressBinding
 
-/**
- * Adapter for displaying enrollments (course progress) in a RecyclerView.
- */
 class EnrollmentAdapter(
-    private val onContinueClick: (Enrollment) -> Unit
+    private val onEnrollmentClick: (Enrollment) -> Unit
 ) : ListAdapter<Enrollment, EnrollmentAdapter.EnrollmentViewHolder>(EnrollmentDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EnrollmentViewHolder {
-        val binding = ItemCourseProgressBinding.inflate(
-            LayoutInflater.from(parent.context),
-            parent,
-            false
-        )
-        return EnrollmentViewHolder(binding)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_enrollment, parent, false)
+        return EnrollmentViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: EnrollmentViewHolder, position: Int) {
         holder.bind(getItem(position))
     }
 
-    inner class EnrollmentViewHolder(
-        private val binding: ItemCourseProgressBinding
-    ) : RecyclerView.ViewHolder(binding.root) {
+    inner class EnrollmentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val ivCourseThumbnail: ImageView = itemView.findViewById(R.id.ivCourseThumbnail)
+        private val tvCourseTitle: TextView = itemView.findViewById(R.id.tvCourseTitle)
+        private val progressBar: ProgressBar = itemView.findViewById(R.id.progressBar)
+        private val tvProgress: TextView = itemView.findViewById(R.id.tvProgress)
+        private val tvStatus: TextView = itemView.findViewById(R.id.tvStatus)
+
+        init {
+            itemView.setOnClickListener {
+                val position = bindingAdapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    onEnrollmentClick(getItem(position))
+                }
+            }
+        }
 
         fun bind(enrollment: Enrollment) {
-            binding.tvCourseTitle.text = enrollment.courseTitle
-            binding.progressBar.progress = enrollment.progress
-            binding.tvProgress.text = "${enrollment.progress}% complété"
+            tvCourseTitle.text = enrollment.courseTitle
             
-            binding.btnContinue.setOnClickListener {
-                onContinueClick(enrollment)
+            if (!enrollment.courseThumbnailUrl.isNullOrEmpty()) {
+                Glide.with(itemView.context)
+                    .load(enrollment.courseThumbnailUrl)
+                    .centerCrop()
+                    .placeholder(R.drawable.gradient_course_hero)
+                    .error(R.drawable.gradient_course_hero)
+                    .into(ivCourseThumbnail)
+            } else {
+                ivCourseThumbnail.setImageResource(R.drawable.gradient_course_hero)
             }
             
-            binding.root.setOnClickListener {
-                onContinueClick(enrollment)
+            progressBar.progress = enrollment.progress
+            tvProgress.text = "${enrollment.progress}%"
+            
+            if (enrollment.isCompleted()) {
+                tvStatus.text = "Terminé"
+                tvStatus.setTextColor(itemView.context.getColor(R.color.success)) // Assuming color.success exists
+            } else {
+                tvStatus.text = "En cours"
+                tvStatus.setTextColor(itemView.context.getColor(R.color.primary))
             }
         }
     }

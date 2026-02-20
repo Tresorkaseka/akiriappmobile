@@ -9,9 +9,10 @@
 - **Home Screen & Content**: Implemented `HomeActivity` with functional `CategoryAdapter` and `CourseAdapter`, displaying dummy data and AI-generated course thumbnails.
 - **New Features**: Added `CoursesActivity` for the 'Courses' tab and integrated a new app logo (`ic_launcher_new.png`).
 - **Build Environment Fixed**: Upgraded project to JDK 17, fixed Kotlin Compile Daemon issues, and resolved resource linking errors.
-- **Trainer Features**: Implemented `TrainerDashboardActivity`, `CreateCourseActivity`, and `AddLessonActivity`.
+- **Trainer Features**: Implemented `TrainerDashboardActivity`, `CreateCourseActivity`, and `AddLessonActivity`. Added an "Upgrade to Trainer (Fix)" button in Settings to repair legacy accounts missing the role field in Firestore.
 - **Storage Workaround**: Bypassed Firebase Storage limits on the Spark plan by implementing Base64 image compression directly into Firestore for course thumbnails.
-- **Course Player**: Added `CoursePlayerActivity` integrated with AndroidX Media3 (ExoPlayer). Video hosting is deferred to YouTube/Vimeo links to maintain the free Spark tier.
+- **Course Player & Content**: Added `CoursePlayerActivity` integrated with AndroidX Media3 (ExoPlayer). Video hosting is deferred to YouTube links. Wrote intelligent DataSeeder functions to assign topic-relevant, verified public YouTube URLs to every lesson based on course category.
+- **UI Bug Fixes**: Fixed `CourseAdapter.kt` Glide image loading in RecyclerViews (disk caching and crossfade) to fix empty thumbnails on the Home screen. Fixed Course Player Prev/Next button truncation.
 - **Backend Complete**: Firebase integration remains intact and functional with new UI and real Firestore implementation.
 
 ## Next Steps

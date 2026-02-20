@@ -22,18 +22,6 @@ class AddLessonActivity : AppCompatActivity() {
     private val lessonRepository = LessonRepository()
     private val storageRepository = StorageRepository()
     private var courseId: String = ""
-    private var selectedVideoUri: Uri? = null
-
-    // Activity Result Launcher for picking a video
-    private val pickMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
-        if (uri != null) {
-            selectedVideoUri = uri
-            val fileName = getFileName(uri)
-            binding.tvSelectedVideoName.text = fileName ?: "Vidéo sélectionnée"
-        } else {
-            Toast.makeText(this, "Aucune vidéo sélectionnée", Toast.LENGTH_SHORT).show()
-        }
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,50 +49,32 @@ class AddLessonActivity : AppCompatActivity() {
     }
 
     private fun setupButtons() {
-        binding.btnSelectVideo.setOnClickListener {
-            // Launch the photo picker to let the user choose only videos
-            pickMedia.launch(androidx.activity.result.PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.VideoOnly))
-        }
-
         binding.btnSave.setOnClickListener {
             val title = binding.etTitle.text.toString()
             val description = binding.etDescription.text.toString()
             val type = binding.actType.text.toString()
             val duration = binding.etDuration.text.toString()
+            val videoUrl = binding.etVideoUrl.text.toString()
 
             if (title.isBlank() || description.isBlank()) {
                 Toast.makeText(this, "Veuillez remplir les champs obligatoires", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            if (type == "video" && selectedVideoUri == null) {
-                Toast.makeText(this, "Veuillez sélectionner une vidéo", Toast.LENGTH_SHORT).show()
+            if (type == "video" && videoUrl.isBlank()) {
+                Toast.makeText(this, "Veuillez fournir un lien vidéo", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            saveLesson(title, description, type, duration)
+            saveLesson(title, description, type, duration, videoUrl)
         }
     }
 
-    private fun saveLesson(title: String, description: String, type: String, duration: String) {
+    private fun saveLesson(title: String, description: String, type: String, duration: String, videoUrl: String) {
         binding.btnSave.isEnabled = false
-        binding.btnSelectVideo.isEnabled = false
-        binding.pbUpload.visibility = View.VISIBLE
         
         lifecycleScope.launch {
-            // 1. Upload Video if selected
-            var contentUrl: String? = null
-            selectedVideoUri?.let { uri ->
-                binding.tvSelectedVideoName.text = "Upload en cours..."
-                storageRepository.uploadLessonVideo(uri).onSuccess { url ->
-                    contentUrl = url
-                }.onFailure { e ->
-                    handleError("Erreur upload vidéo: ${e.message}")
-                    return@launch
-                }
-            }
-
-            // 2. Fetch current lesson count to set 'order'
+            // Fetch current lesson count to set 'order'
             var currentOrder = 1
             lessonRepository.getLessonsForCourse(courseId).onSuccess { lessons ->
                 currentOrder = lessons.size + 1
@@ -115,7 +85,7 @@ class AddLessonActivity : AppCompatActivity() {
                 title = title,
                 description = description,
                 contentType = type,
-                contentUrl = contentUrl, // Now stores the Firebase Storage URL
+                contentUrl = videoUrl, // Now stores the YouTube URL directly
                 duration = duration,
                 order = currentOrder
             )
@@ -130,32 +100,9 @@ class AddLessonActivity : AppCompatActivity() {
     }
     
     private fun handleError(message: String) {
-        binding.pbUpload.visibility = View.GONE
         binding.btnSave.isEnabled = true
-        binding.btnSelectVideo.isEnabled = true
-        binding.tvSelectedVideoName.text = "Erreur, veuillez réessayer"
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
-    private fun getFileName(uri: Uri): String? {
-        var result: String? = null
-        if (uri.scheme == "content") {
-            contentResolver.query(uri, null, null, null, null)?.use { cursor ->
-                if (cursor.moveToFirst()) {
-                    val index = cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME)
-                    if (index != -1) {
-                        result = cursor.getString(index)
-                    }
-                }
-            }
-        }
-        if (result == null) {
-            result = uri.path
-            val cut = result?.lastIndexOf('/')
-            if (cut != null && cut != -1) {
-                result = result?.substring(cut + 1)
-            }
-        }
-        return result
-    }
+
 }

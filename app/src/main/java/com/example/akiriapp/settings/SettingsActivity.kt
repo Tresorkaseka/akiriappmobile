@@ -28,6 +28,25 @@ class SettingsActivity : AppCompatActivity() {
         setupSeedData()
         loadUserProfile()
         setupTrainerDashboard()
+        setupUpgradeTrainer()
+    }
+
+    private fun setupUpgradeTrainer() {
+        binding.btnUpgradeTrainer.setOnClickListener {
+            binding.btnUpgradeTrainer.isEnabled = false
+            lifecycleScope.launch {
+                authRepository.updateProfile(mapOf("role" to "trainer"))
+                    .onSuccess {
+                        binding.btnTrainerDashboard.visibility = android.view.View.VISIBLE
+                        binding.btnUpgradeTrainer.visibility = android.view.View.GONE
+                        android.widget.Toast.makeText(this@SettingsActivity, "Déconnectez-vous et reconnectez-vous pour voir les changements complets !", android.widget.Toast.LENGTH_LONG).show()
+                    }
+                    .onFailure {
+                        binding.btnUpgradeTrainer.isEnabled = true
+                        android.widget.Toast.makeText(this@SettingsActivity, "Erreur lors de la mise à jour", android.widget.Toast.LENGTH_SHORT).show()
+                    }
+            }
+        }
     }
 
     private fun setupToolbar() {
@@ -55,6 +74,10 @@ class SettingsActivity : AppCompatActivity() {
                 // Show trainer dashboard button if user is trainer
                 if (user.role == "trainer") {
                     binding.btnTrainerDashboard.visibility = View.VISIBLE
+                    binding.btnUpgradeTrainer.visibility = View.GONE
+                } else {
+                    binding.btnTrainerDashboard.visibility = View.GONE
+                    binding.btnUpgradeTrainer.visibility = View.VISIBLE
                 }
             }.onFailure {
                 // Handle error or show placeholder
@@ -86,6 +109,15 @@ class SettingsActivity : AppCompatActivity() {
                         seeder.seedForumPosts(userId, user.fullName)
                     }
                 }
+                
+                // Fix existing lessons with valid YouTube links
+                seeder.fixCurrentLessons()
+                
+                // Fix existing courses with missing cover images
+                seeder.fixMissingCourseImages()
+
+                // Seed lessons for all courses that don't have any
+                seeder.seedLessonsForAllCourses()
                 
                 Toast.makeText(this@SettingsActivity, "Données de test ajoutées ! \uD83D\uDE80", Toast.LENGTH_SHORT).show()
                 

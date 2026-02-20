@@ -13,7 +13,9 @@ import com.example.akiriapp.data.repository.AuthRepository
 import com.example.akiriapp.data.repository.CourseRepository
 import com.example.akiriapp.data.repository.EnrollmentRepository
 import com.example.akiriapp.data.repository.LessonRepository
+import com.example.akiriapp.data.repository.ReviewRepository
 import com.example.akiriapp.databinding.ActivityCourseDetailsBinding
+
 import kotlinx.coroutines.launch
 
 class CourseDetailsActivity : AppCompatActivity() {
@@ -23,9 +25,18 @@ class CourseDetailsActivity : AppCompatActivity() {
     private val courseRepository = CourseRepository()
     private val enrollmentRepository = EnrollmentRepository()
     private val lessonRepository = LessonRepository()
-    private val lessonAdapter = LessonAdapter { lesson ->
-        // Could play specific lesson if enrolled, else prompt.
+    private val reviewRepository = ReviewRepository()
+    
+    private val lessonAdapter = LessonAdapter { _lesson ->
+        if (isEnrolled) {
+            val intent = android.content.Intent(this, com.example.akiriapp.learning.CoursePlayerActivity::class.java)
+            intent.putExtra("COURSE_ID", courseId)
+            startActivity(intent)
+        } else {
+            Toast.makeText(this, "Veuillez vous inscrire pour accéder aux leçons", Toast.LENGTH_SHORT).show()
+        }
     }
+    private val reviewAdapter = com.example.akiriapp.adapter.ReviewAdapter()
     
     private var courseId: String = ""
     private var isEnrolled: Boolean = false
@@ -48,6 +59,10 @@ class CourseDetailsActivity : AppCompatActivity() {
         binding.rvProgram.apply {
             layoutManager = LinearLayoutManager(this@CourseDetailsActivity)
             adapter = lessonAdapter
+        }
+        binding.rvReviews.apply {
+            layoutManager = LinearLayoutManager(this@CourseDetailsActivity)
+            adapter = reviewAdapter
         }
     }
 
@@ -78,8 +93,8 @@ class CourseDetailsActivity : AppCompatActivity() {
 
         binding.btnEnroll.setOnClickListener {
             if (isEnrolled) {
-                // Navigate to continue course (Player)
                 val intent = android.content.Intent(this, com.example.akiriapp.learning.CoursePlayerActivity::class.java)
+                intent.putExtra("COURSE_ID", courseId)
                 startActivity(intent)
             } else {
                 enrollInCourse()
@@ -142,6 +157,18 @@ class CourseDetailsActivity : AppCompatActivity() {
                     lessonAdapter.submitList(lessons)
                 }
             }
+
+            // Load and display reviews for Reviews tab
+            reviewRepository.getReviewsForCourse(courseId).onSuccess { reviews ->
+                if (reviews.isEmpty()) {
+                    binding.tvReviewsEmpty.visibility = View.VISIBLE
+                    binding.rvReviews.visibility = View.GONE
+                } else {
+                    binding.tvReviewsEmpty.visibility = View.GONE
+                    binding.rvReviews.visibility = View.VISIBLE
+                    reviewAdapter.submitList(reviews)
+                }
+            }
         }
     }
 
@@ -166,6 +193,7 @@ class CourseDetailsActivity : AppCompatActivity() {
                     
                     // Launch player immediately
                     val intent = android.content.Intent(this@CourseDetailsActivity, com.example.akiriapp.learning.CoursePlayerActivity::class.java)
+                    intent.putExtra("COURSE_ID", courseId)
                     startActivity(intent)
                 }.onFailure { e ->
                     Toast.makeText(this@CourseDetailsActivity, "Erreur: ${e.message}", Toast.LENGTH_SHORT).show()
@@ -177,16 +205,18 @@ class CourseDetailsActivity : AppCompatActivity() {
     private fun showAboutContent() {
         binding.contentAbout.visibility = View.VISIBLE
         binding.contentProgram.visibility = View.GONE
+        binding.contentReviews.visibility = View.GONE
     }
 
     private fun showProgramContent() {
         binding.contentAbout.visibility = View.GONE
         binding.contentProgram.visibility = View.VISIBLE
+        binding.contentReviews.visibility = View.GONE
     }
 
     private fun showReviewsContent() {
         binding.contentAbout.visibility = View.GONE
         binding.contentProgram.visibility = View.GONE
-        // TODO: Show reviews RecyclerView
+        binding.contentReviews.visibility = View.VISIBLE
     }
 }

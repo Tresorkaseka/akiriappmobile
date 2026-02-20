@@ -17,11 +17,11 @@
 - **Course Details**: Dynamic image loading and enrollment functionality.
 - **My Learning**: Firebase integration with progress tracking and filters.
 - **Trainer Dashboard**: Course creation logic with native Android Image Picking. Thumbnails are compressed to Base64 and saved natively to Firestore to bypass Firebase Storage paid tier limits.
-- **Course Player**: Fully functional playback UI integrating AndroidX Media3 (ExoPlayer) (ready for external URIs like YouTube/Vimeo).
-- **Settings**: Profile management, logout, and seed data utility.
+- **Course Player & YouTube Content**: Fully functional playback UI integrating AndroidX Media3 for raw videos, and smart Intent routing for YouTube content. DataSeeder automatically links relevant, valid public YouTube videos based on Course Category.
+- **Settings**: Profile management, logout, and an intelligent seed data utility (auto-creates courses, lessons, images, and reviews). Includes a manual self-repair button for legacy Trainer accounts.
 - **Localization**: French strings and FC currency configured.
 - **Build System**: Fixed and verified Gradle wrapper 8.6 with JDK 17, and added ExoPlayer/Glide dependencies.
-- **Assets**: App logo, dynamic AI course cover backfilling, and generic assets integrated.
+- **Assets**: App logo, dynamic AI course cover backfilling, and Glide caching strategies for smooth RecyclerView scrolling.
 
 ## What's Left
 - **Release**: Generate signed APK/Bundle.

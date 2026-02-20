@@ -44,6 +44,8 @@ class CourseAdapter(
                 Glide.with(binding.root.context)
                     .load(course.thumbnailUrl)
                     .centerCrop()
+                    .diskCacheStrategy(com.bumptech.glide.load.engine.DiskCacheStrategy.ALL)
+                    .transition(com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade())
                     .placeholder(com.example.akiriapp.R.drawable.gradient_course_hero)
                     .error(com.example.akiriapp.R.drawable.gradient_course_hero)
                     .into(binding.ivThumbnail)

@@ -20,6 +20,32 @@
             app:use_controller="true"
             app:show_buffering="when_playing" />
 
+        <LinearLayout
+            android:id="@+id/youtubeOverlay"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:background="#DD000000"
+            android:orientation="vertical"
+            android:visibility="gone">
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/white"
+                android:text="Ceci est une vidéo YouTube" />
+            
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnOpenYoutube"
+                style="@style/Akiri.Button.Primary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Ouvrir dans YouTube" />
+        </LinearLayout>
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnBack"
             style="@style/Widget.Material3.Button.IconButton"
@@ -81,7 +107,7 @@
             android:id="@+id/btnPrevious"
             style="@style/Akiri.Button.Outlined"
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_weight="1"
             android:text="Précédent" />
@@ -90,7 +116,7 @@
             android:id="@+id/btnNext"
             style="@style/Akiri.Button.Primary"
             android:layout_width="0dp"
-            android:layout_height="48dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_weight="1"
             android:text="Suivant" />

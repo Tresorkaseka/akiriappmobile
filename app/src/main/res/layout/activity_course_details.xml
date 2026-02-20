@@ -83,7 +83,7 @@
                         android:layout_height="wrap_content"
                         android:text="Programmation"
                         android:textColor="@color/white"
-                        app:chipBackgroundColor="#33FFFFFF"
+                        app:chipBackgroundColor="@color/primary"
                         app:chipStrokeWidth="0dp" />
 
                     <RatingBar
@@ -205,49 +205,10 @@
                     android:id="@+id/tvDescription"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Apprenez les fondamentaux du développement Android avec Kotlin. Ce cours complet vous guidera de zéro à la publication de votre première application sur le Play Store."
+                    android:text="La description du cours devrait s'afficher ici."
                     android:textColor="@color/text_secondary"
                     android:textSize="15sp"
                     android:lineSpacingExtra="4dp" />
-
-                <!-- What You'll Learn -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
-                    android:text="@string/course_what_you_learn"
-                    android:textColor="@color/text_primary"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:orientation="vertical">
-
-                    <include layout="@layout/item_learn_point" />
-                </LinearLayout>
-
-                <!-- Prerequisites -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
-                    android:text="@string/course_prerequisites"
-                    android:textColor="@color/text_primary"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/tvPrerequisites"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="• Connaissances de base en programmation\n• Un ordinateur (Windows, Mac ou Linux)\n• Motivation et curiosité"
-                    android:textColor="@color/text_secondary"
-                    android:textSize="14sp"
-                    android:lineSpacingExtra="6dp" />
 
             </LinearLayout>
 
@@ -270,6 +231,31 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvProgram"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false" />
+            </LinearLayout>
+
+            <!-- Reviews Content Area -->
+            <LinearLayout
+                android:id="@+id/contentReviews"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/tvReviewsEmpty"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Aucun avis n'a encore été publié pour ce cours."
+                    android:textColor="@color/text_secondary"
+                    android:visibility="gone" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvReviews"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:nestedScrollingEnabled="false" />

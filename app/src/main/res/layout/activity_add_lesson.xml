@@ -83,49 +83,21 @@
                     android:inputType="none" />
             </com.google.android.material.textfield.TextInputLayout>
             
-            <LinearLayout
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_marginTop="16dp"
-                android:background="@drawable/rounded_background"
-                android:padding="16dp">
+                android:hint="Lien YouTube de la vidéo"
+                app:hintTextColor="#0056D2"
+                app:boxStrokeColor="#0056D2">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Fichier Vidéo"
-                    android:textColor="#0056D2"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnSelectVideo"
-                    style="@style/Widget.Material3.Button.TonalButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Choisir une vidéo"
-                    app:icon="@android:drawable/ic_menu_gallery" />
-
-                <TextView
-                    android:id="@+id/tvSelectedVideoName"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etVideoUrl"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Aucune vidéo sélectionnée"
-                    android:textColor="@color/text_secondary"
-                    android:textSize="14sp" />
-
-                <ProgressBar
-                    android:id="@+id/pbUpload"
-                    style="?android:attr/progressBarStyleHorizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:visibility="gone"
-                    android:indeterminate="true" />
-            </LinearLayout>
+                    android:inputType="textUri" />
+            </com.google.android.material.textfield.TextInputLayout>
             
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.Material3.TextInputLayout.OutlinedBox"

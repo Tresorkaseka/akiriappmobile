@@ -250,6 +250,21 @@
                 app:icon="@drawable/ic_trainer"
                 app:iconTint="@color/on_primary" />
 
+            <!-- Upgrade to Trainer (Debug) -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnUpgradeTrainer"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="16dp"
+                android:text="Devenir Formateur (Fix)"
+                android:textColor="@color/primary"
+                android:visibility="visible"
+                app:strokeColor="@color/primary"
+                app:cornerRadius="12dp"
+                app:icon="@drawable/ic_edit"
+                app:iconTint="@color/primary" />
+
             <!-- Logout -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnLogout"

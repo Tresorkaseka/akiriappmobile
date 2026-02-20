@@ -7,6 +7,8 @@
 - [TASK014] - Release Preparation - Generating signed APK/Bundle and final testing.
 
 ## Completed
+- [TASK019] Fix Course Player & My Learning Bugs - Fixed My Learning layout, Prev/Next buttons, and added YouTube update script.
+- [TASK018] Fix Category Chip Color - Fixed the category chip color in course details to use the primary color making it visible.
 - [TASK001] Initialization and Memory Bank setup - Setting up the foundation for the project.
 - [TASK002] Implement Authentication UI - Initial UI implementation.
 - [TASK003] Integrate Firebase & Fix Build - Configured Firebase project and SDKs.

@@ -63,12 +63,11 @@ class EnrollmentRepository {
         return try {
             val snapshot = enrollmentsCollection
                 .whereEqualTo("userId", userId)
-                .orderBy("lastAccessedAt", Query.Direction.DESCENDING)
                 .get().await()
             
             val enrollments = snapshot.documents.mapNotNull { doc ->
                 doc.toObject(Enrollment::class.java)?.copy(id = doc.id)
-            }
+            }.sortedByDescending { it.lastAccessedAt }
             Result.success(enrollments)
         } catch (e: Exception) {
             Result.failure(e)
@@ -83,12 +82,11 @@ class EnrollmentRepository {
             val snapshot = enrollmentsCollection
                 .whereEqualTo("userId", userId)
                 .whereEqualTo("status", "in_progress")
-                .orderBy("lastAccessedAt", Query.Direction.DESCENDING)
                 .get().await()
             
             val enrollments = snapshot.documents.mapNotNull { doc ->
                 doc.toObject(Enrollment::class.java)?.copy(id = doc.id)
-            }
+            }.sortedByDescending { it.lastAccessedAt }
             Result.success(enrollments)
         } catch (e: Exception) {
             Result.failure(e)
@@ -151,13 +149,11 @@ class EnrollmentRepository {
             val snapshot = enrollmentsCollection
                 .whereEqualTo("userId", userId)
                 .whereEqualTo("status", "in_progress")
-                .orderBy("lastAccessedAt", Query.Direction.DESCENDING)
-                .limit(1)
                 .get().await()
             
-            val enrollment = snapshot.documents.firstOrNull()?.let { doc ->
+            val enrollment = snapshot.documents.mapNotNull { doc ->
                 doc.toObject(Enrollment::class.java)?.copy(id = doc.id)
-            }
+            }.maxByOrNull { it.lastAccessedAt }
             Result.success(enrollment)
         } catch (e: Exception) {
             Result.failure(e)
